@@ -6,13 +6,14 @@ import { renderGallery } from "./js/render-functions";
 
 import { searchByQuery } from "./js/pixabay-api";
 
-const input = document.querySelector('.search-input')
-
-const btn = document.querySelector('.search-btn')
-
 const form = document.querySelector('.search-form')
 
 const loadingIndicator = document.querySelector('.loader');
+
+const galleryContainer = document.querySelector('#gallery-container');
+
+
+
 
 
 form.addEventListener('submit', handleSearch)
@@ -27,6 +28,9 @@ function hideLoadingIndicator() {
 
 function handleSearch(event) {
     event.preventDefault()
+    if (form) {
+    galleryContainer.innerHTML = ''
+    }
 
     const queryValue = event.currentTarget.elements.query.value.trim().toLowerCase()
     if (queryValue === '') {
@@ -46,6 +50,7 @@ function handleSearch(event) {
         if (form) {
             form.reset();
         }
+        
     })
 }
 
